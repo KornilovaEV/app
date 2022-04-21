@@ -1,64 +1,64 @@
 import React from 'react'
 import {useForm} from 'react-hook-form';
 
-function App() {
-  const {
-  register,
-  formState: {
+function Registration() {
+const {
+register,
+formState: {
     errors, isValid,
-  },
-  handleSubmit,
-  reset,
-  } = useForm({
+},
+handleSubmit,
+reset,
+} = useForm({
     mode: "onBlur"
-  });
+});
 
 const onSubmit = (data) => {
-  alert(JSON.stringify(data))
-  reset();
+alert(JSON.stringify(data))
+reset();
 }
 
 
-  return (
-    <div className="App">
+return (
+    <div className="Registration">
     <h1>Registration</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
+    <label>
         FirstName:
-      <input 
+    <input 
         {...register('firstName',{
-          required: "You need to fill out form!",
-          minLength: {
+        required: "You need to fill out form!",
+        minLength: {
             value: 2,
             message: "Minimum of 2 characters!"
-          }
+        }
         })}
-      />
-      </label>
-      <div style={{height: 40}}>
+    />
+    </label>
+    <div style={{height: 40}}>
         {errors?.firstName && <p>{errors?.firstName?.message || 'Error!'}</p>}
-      </div>
-      
-      <label>
+    </div>
+    
+    <label>
         LastName:
-      <input 
+    <input 
         {...register('lastName',{
-          required: "You need to fill out form!",
-          minLength: {
+        required: "You need to fill out form!",
+        minLength: {
             value: 2,
             message: "Minimum of 2 characters!"
-          }
+        }
         })}
-      />
-      </label>
-      <div style={{height: 40}}>
+    />
+    </label>
+    <div style={{height: 40}}>
         {errors?.lastName && <p>{errors?.lastName?.message || 'Error!'}</p>}
-      </div>
+    </div>
 
-      <input type="submit" disabled={!isValid}/>
+    <input type="submit" disabled={!isValid}/>
     </form>
     </div>
-  );
+);
 }
 
-export default App;
+export {Registration};
