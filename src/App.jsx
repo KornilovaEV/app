@@ -2,22 +2,26 @@ import {Home} from "./pages/Home";
 import {Login} from "./pages/Login";
 import {Registration} from "./pages/Registration";
 import { Notfoundpage } from './pages/Error';
+import { Collection } from './pages/Collection';
+//import { Singlepage } from './pages/Singlepage';
+import { Layout } from "./components/Layout";
 
-import {Routes, Route, Link} from 'react-router-dom';
+
+import {Routes, Route} from 'react-router-dom';
 
 function App(){
     return (
         <>
-        <header>
-            <Link to="/">Home Page</Link>
-            <Link to="/registration">Registration Page</Link>
-            <Link to="/login">Login Page</Link>
-        </header>
+
         <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/registration" element={<Login />}/>
-            <Route path="/login" element={<Registration />}/>
-            <Route path="*" element={<Notfoundpage />} />
+            <Route path ="/" element={<Layout />} >
+                <Route index element={<Home />}/>
+                <Route path="login" element={<Login />}/>
+                <Route path="registration" element={<Registration />}/>
+                <Route path="collection" element={<Collection />}/>
+                <Route path="collection/:id" element={<Collection />}/>
+                <Route path="*" element={<Notfoundpage />} />
+            </Route>
         </Routes>
         </>
     );

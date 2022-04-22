@@ -17,7 +17,17 @@ const onSubmit = (data) => {
 alert(JSON.stringify(data))
 reset();
 }
-
+const condition_length = {
+    required: "You need to fill out form!",
+            minLength: {
+                value: 2,
+                message: "Min of 2 characters!"
+            }, 
+            maxLength:{
+                value: 20,
+                message: "Max of 20 characters!"
+            }
+}
 
 return (
     <div className="Registration">
@@ -27,11 +37,8 @@ return (
         FirstName:
     <input 
         {...register('firstName',{
-        required: "You need to fill out form!",
-        minLength: {
-            value: 2,
-            message: "Minimum of 2 characters!"
-        }
+            condition_length,
+            pattern: (/^[A-Za-z]+$/i )
         })}
     />
     </label>
@@ -43,16 +50,39 @@ return (
         LastName:
     <input 
         {...register('lastName',{
-        required: "You need to fill out form!",
-        minLength: {
-            value: 2,
-            message: "Minimum of 2 characters!"
-        }
+            condition_length, 
+            pattern: (/^[A-Za-z]+$/i )
         })}
     />
     </label>
     <div style={{height: 40}}>
         {errors?.lastName && <p>{errors?.lastName?.message || 'Error!'}</p>}
+    </div>
+
+    <label>
+        Login:
+    <input 
+        {...register('login',{
+            condition_length,
+            pattern: (/^[A-Za-z]+$/i )
+        })}
+    />
+    </label>
+    <div style={{height: 40}}>
+        {errors?.login && <p>{errors?.login?.message || 'Error!'}</p>}
+    </div>
+
+    <label>
+        Password:
+    <input 
+        {...register('password',{
+        condition_length,
+        pattern: ( /^[A-Za-z1-9-{+-/.,*^}]+$/i),
+        })}
+    />
+    </label>
+    <div style={{height: 40}}>
+        {errors?.password && <p>{errors?.password?.message || 'You can use letters,numbers and values {+ - / * , ^ . }'}</p>}
     </div>
 
     <input type="submit" disabled={!isValid}/>
