@@ -35,7 +35,7 @@ return (
     <form onSubmit={handleSubmit(onSubmit)}>
     <label>
         FirstName:
-    <input 
+    <input placeholder="Your FirstName"
         {...register('firstName',{
             condition_length,
             pattern: (/^[A-Za-z]+$/i )
@@ -48,7 +48,7 @@ return (
     
     <label>
         LastName:
-    <input 
+    <input placeholder="Your LastName"
         {...register('lastName',{
             condition_length, 
             pattern: (/^[A-Za-z]+$/i )
@@ -61,10 +61,10 @@ return (
 
     <label>
         Login:
-    <input 
+    <input placeholder="Email"
         {...register('login',{
             condition_length,
-            pattern: (/^[A-Za-z]+$/i )
+            pattern: (/^[A-Za-z1-9]+$/i )
         })}
     />
     </label>
@@ -74,7 +74,7 @@ return (
 
     <label>
         Password:
-    <input 
+    <input placeholder="Password"
         {...register('password',{
         condition_length,
         pattern: ( /^[A-Za-z1-9-{+-/.,*^}]+$/i),
@@ -85,7 +85,7 @@ return (
         {errors?.password && <p>{errors?.password?.message || 'You can use letters,numbers and values {+ - / * , ^ . }'}</p>}
     </div>
 
-    <input type="submit" disabled={!isValid}/>
+    <input type="submit" value= "Registration" disabled={!isValid}/>
     </form>
     </div>
 );

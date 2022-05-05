@@ -62,7 +62,9 @@ button[type='button'] {
   color: white;
   text-transform: none;
   padding: 10px;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
+  width: 10%;
+  
 }
 
 input[type='submit']:hover,
@@ -128,7 +130,7 @@ main {
 
 main a {
   text-decoration: none;
-  color: var(--color-bg);
+  color: var(--color-white);
 }
 main a:hover {
   text-decoration: underline;

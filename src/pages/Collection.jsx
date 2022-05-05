@@ -1,10 +1,27 @@
-import { useParams } from "react-router-dom";
+import {Link} from "react-router-dom"
+import { useState, useEffect } from 'react'
+
+
 const Collection = () => {
-    const {id} = useParams();
+    const [collections, setCollections] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://jsonplaceholder.typicode.com/posts`)
+            .then(res => res.json())
+            .then(data => setCollections(data))
+    }, []);
 
     return (
         <div>
-            {id}
+            <h1>Our Collections</h1>
+            {
+                collections.map(collection => (
+                    <Link key={collection.id} to={`/collections/${collection.id}`}>
+                        <li>{collection.title}</li>
+                    </Link>
+                ))
+                
+                }
         </div>
     )
 }

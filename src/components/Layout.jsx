@@ -8,7 +8,8 @@ const Layout = () => {
             <NavLink to="/">Home Page</NavLink>
             <NavLink to="/registration">Registration Page</NavLink>
             <NavLink to="/login">Login Page</NavLink>
-            <NavLink to="/collection">Collection Page</NavLink>
+            <NavLink to="/collections">Collection Page</NavLink>
+            
         </header>
 
         <main className="container">
