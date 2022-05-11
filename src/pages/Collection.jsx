@@ -14,6 +14,7 @@ const Collection = () => {
     return (
         <div>
             <h1>Our Collections</h1>
+            <Link to="/collections/new">Add new collection</Link>
             {
                 collections.map(collection => (
                     <Link key={collection.id} to={`/collections/${collection.id}`}>

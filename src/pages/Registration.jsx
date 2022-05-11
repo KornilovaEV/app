@@ -14,7 +14,7 @@ reset,
 });
 
 const onSubmit = (data) => {
-alert(JSON.stringify(data))
+alert(JSON.stringify(data));
 reset();
 }
 const condition_length = {
@@ -36,8 +36,8 @@ return (
     <label>
         FirstName:
     <input placeholder="Your FirstName"
-        {...register('firstName',{
-            condition_length,
+        {...register('firstName',condition_length,
+        {    
             pattern: (/^[A-Za-z]+$/i )
         })}
     />
@@ -49,8 +49,9 @@ return (
     <label>
         LastName:
     <input placeholder="Your LastName"
-        {...register('lastName',{
-            condition_length, 
+        {...register('lastName',
+        condition_length,
+        {
             pattern: (/^[A-Za-z]+$/i )
         })}
     />
@@ -61,11 +62,13 @@ return (
 
     <label>
         Login:
-    <input placeholder="Email"
-        {...register('login',{
-            condition_length,
-            pattern: (/^[A-Za-z1-9]+$/i )
-        })}
+        <input type="text" placeholder="Need form email@mail.com" 
+        {
+            ...register("Email",
+                {
+                    required: true, pattern: /^\S+@\S+$/i
+                })
+        }
     />
     </label>
     <div style={{height: 40}}>
@@ -75,8 +78,9 @@ return (
     <label>
         Password:
     <input placeholder="Password"
-        {...register('password',{
+        {...register('password',
         condition_length,
+        {
         pattern: ( /^[A-Za-z1-9-{+-/.,*^}]+$/i),
         })}
     />

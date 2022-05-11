@@ -4,6 +4,7 @@ import {NavLink, Outlet} from 'react-router-dom';
 const Layout = () => {
     return (
         <>
+        
         <header>
             <NavLink to="/">Home Page</NavLink>
             <NavLink to="/registration">Registration Page</NavLink>

@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -64,7 +65,15 @@ button[type='button'] {
   padding: 10px;
   letter-spacing: 5px;
   width: 10%;
-  
+
+}
+
+.note{
+  background: #516391;
+  color: white;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 2.3em;
 }
 
 input[type='submit']:hover,

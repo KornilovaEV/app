@@ -1,66 +1,93 @@
+
 import React from 'react'
-import {useForm} from 'react-hook-form';
+import {useForm} from 'react-hook-form'
+import {useLocation, useNavigate} from 'react-router-dom';
+import {useAuth} from '../hook/useAuth';
 
 function Login() {
-const {
-register,
-formState: {
-    errors, isValid,
-},
-handleSubmit,
-reset,
-} = useForm({
-    mode: "onBlur"
-});
+    const location = useLocation();
+    const navigate = useNavigate();
+    const {singin} = useAuth();
 
-const onSubmit = (data) => {
-alert(JSON.stringify(data))
-reset();
-}
-const condition_length = {
-    required: "You need to fill out form!",
-            minLength: {
-                value: 2,
-                message: "Min of 2 characters!"
-            }, 
-            maxLength:{
-                value: 20,
-                message: "Max of 20 characters!"
-            }
-}
+    const fromPage = location.state?.from?.pathname || '/';
 
-return (
-    <div className="Login">
-    <h1>Login</h1>
-    <form onSubmit={handleSubmit(onSubmit)}>
+    const {
+        register,
+        formState: {
+            errors, isValid,
+        },
+        //reset,
+        } = useForm({
+            mode: "onBlur"
+        });
 
-    <label>
-        Login:
-    <input type="text" placeholder="Email" {
-        ...register("Email", {required: true, pattern: /^\S+@\S+$/i})
-        } />
-    </label>
-    <div style={{height: 40}}>
-        {errors?.login && <p>{errors?.login?.message || 'Error!'}</p>}
-    </div>
+        
 
-    <label>
-        Password:
-    <input type="text" placeholder="Password"
-        {...register('password',{
-        condition_length,
-        pattern: ( /^[A-Za-z1-9-{+-/.,*^}]+$/i),
-        })}
-    />
-    </label>
-    <div style={{height: 40}}>
-        {errors?.password && <p>{errors?.password?.message || 'You can use letters,numbers and values {+ - / * , ^ . }'}</p>}
-    </div>
+        const condition_length = {
+            required: "You need to fill out form!",
+                    minLength: {
+                        value: 2,
+                        message: "Min of 8 characters!"
+                    }, 
+                    maxLength:{
+                        value: 20,
+                        message: "Max of 20 characters!"
+                    }
+        }
+    
 
-    <input type="submit" value= "Login" disabled={!isValid}/>
-    </form>
-    </div>
-);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        /*const user = {
+            login: form.login.value,
+            password: form.password.value
+        }*/
+        const user = form.password.value;
+        
+        singin(user, () => navigate(fromPage, {replace: true})); //нельзя вернуться по кнопке назад на стр реги 
+    };
+
+
+
+    return (
+        <div>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+
+        {/*
+        <label>
+            Login:
+        <input name="login" placeholder="Need form email@mail.com" {
+            ...register("login",
+            {
+                required: true, pattern: /^\S+@\S+$/i
+            })
+            } />
+        </label>
+        <div style={{height: 40}}>
+            {errors?.login && <p>{errors?.login?.message || 'Error!'}</p>}
+        </div>   */} 
+
+        <label>
+            Password:
+        <input name="password"  type="text" placeholder="Password"
+            {...register('password',
+            condition_length,
+            {
+                pattern: ( /^[A-Za-z1-9-{+-/.,*^}]+$/i),
+            })}
+        />
+        </label>
+        <div style={{height: 40}}>
+            {errors?.password && <p>{errors?.password?.message || 'You can use letters,numbers and values {+ - / * , ^ . }'}</p>}
+        </div>
+
+        <input type="submit" value= "Login" disabled={!isValid}/>
+        </form>
+        </div>
+    );
 }
 
 export {Login};
