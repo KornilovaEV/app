@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-//import {CSSTransition} from 'react-transition-group'
+import {CSSTransition} from 'react-transition-group'
 import {AlertContext} from '../alert/alertContext'
 
 export const Alert = () => {
@@ -10,7 +10,7 @@ export const Alert = () => {
     }
 
     return (
-        /* <CSSTransition
+        <CSSTransition
         in={alert.visible}
         timeout={{
             enter: 500,
@@ -19,8 +19,7 @@ export const Alert = () => {
         classNames={'alert'}
         mountOnEnter
         unmountOnExit
-        >*/
-        //<div className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
+        >
         <div className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
             <strong>Attention </strong>
             &nbsp;{alert.text}
@@ -28,6 +27,6 @@ export const Alert = () => {
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        //</CSSTransition>
+        </CSSTransition>
     )
 }

@@ -1,16 +1,25 @@
-import {useAuth} from '../hook/useAuth';
-import { useNavigate} from 'react-router-dom';
+
+import {Navigate} from 'react-router-dom';
+import {useDispatch} from 'react-redux'
+import { useAuth } from '../hook/useAuth';
+import {removeUser} from '../store/slices/userSlice'
 
 const CreateCollection = () => {
-    const {singout} = useAuth();
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    return(
+    const {isAuth, email} = useAuth();
+
+    return isAuth ? (
         <div>
-            <h1>Create a collection</h1>
-            <button onClick={() => singout(() => navigate('/', {replace: true}))}>Log Out</button>
+            <h1>Welcome</h1>
+
+            <button
+                onClick={()=> dispatch(removeUser())}
+            >Log out from {email}</button>
         </div>
+    ) : (
+        <Navigate to="/login" />
     )
 }
 
-export {CreateCollection};
+export {CreateCollection}

@@ -1,24 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
+import {useSelector} from 'react-redux';
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({children}) => {
-    /*const user={
-        login: useState(null), 
-        password: useState(null)
-    } */
 
-    const [user, setUser] = useState(null);
+    const {email, token, id} = useSelector(state => state.user);
 
-    const singin = (newUser, cb) => {
-        setUser(newUser);
-        cb();
-    }
-    const singout = (cb) => {
-        setUser(null);
-        cb();
-    }
-    const value = {user, singin, singout};
+    const value = {isAuth: !!email, email, token, id};
 
     return <AuthContext.Provider value={value} >
         {children}
