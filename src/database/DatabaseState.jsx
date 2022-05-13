@@ -4,14 +4,13 @@ import {DatabaseContext} from './databaseContext'
 import {databaseReducer} from './databaseReduser'
 import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../alert/types'
 
-const url = process.env.REACT_APP_DB_URL
+const url = "https://collection-2f228-default-rtdb.firebaseio.com"
 
 export const DatabaseState = ({children}) => {
     const initialState = {
         notes: [],
         loading: false
     }
-
 
     const [state, dispatch] = useReducer(databaseReducer, initialState)
 
@@ -27,13 +26,12 @@ export const DatabaseState = ({children}) => {
             id: key
         }
         })
-        
         dispatch({type: FETCH_NOTES, payload})
     }
 
     const addNote = async title => {
         const note = {
-        title, date: new Date().toJSON()
+        title
         }
 
         try {
@@ -67,3 +65,4 @@ export const DatabaseState = ({children}) => {
         </DatabaseContext.Provider>
     )
 }
+

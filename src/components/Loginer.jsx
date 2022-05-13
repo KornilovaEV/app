@@ -1,15 +1,16 @@
 
-import React from 'react'
+import React, {useContext} from 'react'
 import {useNavigate} from 'react-router-dom';
 import {Forms} from '../pages/Forms'
 import {useDispatch} from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {setUser} from '../store/slices/userSlice';
-
+import {AlertContext} from '../alert/alertContext'
 
 function Loginer() {
     const dispatch = useDispatch();
     const {navigate} = useNavigate();
+    const alert = useContext(AlertContext)
 
     const handleLogin = (email, password) => {
         const auth = getAuth();
@@ -21,9 +22,11 @@ function Loginer() {
                     id: user.uid,
                     token: user.accessToken,
                 }));
-                navigate('/', {replace: true});
+                navigate('/');
+
             })
-            .catch(() => alert('Invalid user!'))
+            .catch(
+                alert.show('Invalid user!'))
     }
     return (
         <Forms
