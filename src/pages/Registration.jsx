@@ -10,7 +10,7 @@ function Registration() {
         <SignUp />
 
         <p>
-            No account? <Link to="/registration">Registration</Link>
+            You have account? <Link to="/login">Login</Link>
         </p>
 
         </div>

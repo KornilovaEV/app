@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate} from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 const Singlepage = () => {
@@ -25,9 +25,13 @@ const Singlepage = () => {
                     <h1>{collection.title}</h1>
                     <p>{collection.body}</p>
                     
-                    <Link  to={`/collections/${collection.id}/edit`}> 
-                        <button type='button'>Edit</button>
-                    </Link>
+
+
+                    <input 
+                    type="submit" 
+                    value={"Edit"} 
+                    style={{width:'15%'}}
+                    onClick={() =>navigate(`/collections/${collection.id}/edit`)}/>
                     
                 </>
             )}

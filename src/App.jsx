@@ -6,6 +6,7 @@ import { Collection } from './pages/Collection';
 import { Singlepage } from './pages/Singlepage';
 import { EditCollection } from './pages/EditCollection';
 import { CreateCollection } from "./pages/CreateCollection";
+import { UserPage } from "./pages/UserPage";
 
 import { Layout } from "./components/Layout";
 import { Alert } from "./components/Alert";
@@ -28,7 +29,11 @@ function App(){
                             <Route path ="/" element={<Layout />} >
                                 <Route index element={<Home />}/>
                                     <Route path="login" element={<Login />}/>
-                                    {/*<Route path="login-us" element={<Navigate to="/login" replace/>}/>*/}
+                                    <Route path="user" element={
+                                    <RequireAuth>
+                                        <UserPage />
+                                    </RequireAuth>
+                                    }/>
                                     <Route path="registration" element={<Registration />}/>
                                     <Route path="collections" element={<Collection />}/>
                                     <Route path="collections/:id" element={<Singlepage />}/>

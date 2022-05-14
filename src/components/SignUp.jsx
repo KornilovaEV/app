@@ -3,10 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import {Forms} from '../pages/Forms';
 import {setUser} from '../store/slices/userSlice';
+import {AlertContext} from '../alert/alertContext'
+import {useContext} from 'react'
 
 const SignUp = () => {
     const dispatch = useDispatch();
-    const {navigate} = useNavigate();
+    const navigate = useNavigate();
+    const alert = useContext(AlertContext)
 
     const handleRegister = (email, password) => {
         const auth = getAuth();
@@ -20,7 +23,7 @@ const SignUp = () => {
                 }))
                 navigate('/', {replace: true});
             })
-            .catch(console.error)
+            .catch(alert.show("This email already exists"))
     }
 
     return (

@@ -9,7 +9,7 @@ function Forms({title, handleClick}) {
 
     const {
         register,
-        formState: {errors, isValid, }} = useForm({
+        formState: {errors, }} = useForm({
         mode: "onBlur"});
 
     const condition_length = {
@@ -56,7 +56,7 @@ function Forms({title, handleClick}) {
             {errors?.password && <p>{errors?.password?.message || 'You can use letters,numbers and values {+ - / * , ^ . }'}</p>}
         </div>
 
-        <input onClick={() => handleClick(email, password)} type="submit" value= {title} disabled={!isValid}/>
+        <input onClick={() => handleClick(email, password)} type="submit" value= {title} />
         
 
         </div>
