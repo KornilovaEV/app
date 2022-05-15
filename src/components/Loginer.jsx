@@ -23,7 +23,6 @@ function Loginer() {
                 navigate('/user', {replace: true})
 
             })
-            .catch(alert.show("This email already exists"))
     }
     return (
         <Forms
