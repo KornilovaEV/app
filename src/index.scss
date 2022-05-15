@@ -72,6 +72,9 @@ button[type='button'] {
   align-items: center;
   top: 50%;
   left: 90%;
+  strong {
+    margin-right: 1rem;
+  }
 }
 
 input[type='submit']:hover,

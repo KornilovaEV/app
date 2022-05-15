@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import { useAuth } from '../hook/useAuth';
 import {useDispatch} from 'react-redux'
 import {removeUser} from '../store/slices/userSlice'
-
+import {DatabaseState} from '../database/DatabaseState'
 
 
 const Layout = () => {
@@ -14,7 +14,7 @@ const Layout = () => {
     
     return (
         <>
-        
+        <DatabaseState>
         <header>
             <NavLink to="/">Home Page</NavLink>
             <NavLink to="/collections">Collection Page</NavLink>
@@ -35,14 +35,13 @@ const Layout = () => {
             value={"Log IN"} 
             onClick={() => navigate('/login')}/>
             }
-            
-            
         </header>
 
         <main className="container">
             <Outlet />
         </main>
         <footer className="container">2022, Kornilova Helen</footer>
+        </DatabaseState>
         </>
     )
 

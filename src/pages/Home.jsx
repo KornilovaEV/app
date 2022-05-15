@@ -12,16 +12,16 @@ export const Home = () => {
         fetchNotes()
         // eslint-disable-next-line
         }, [])  
-
-
+console.log({notes})
     return (
+    
         <Fragment>
             <Form />
-
             <hr/>
             {loading
         ? <Loader />
         : <Notes notes={notes} onRemove={removeNote}/>
+        
         }
             
         </Fragment>

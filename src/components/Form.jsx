@@ -24,6 +24,7 @@ const Form = () => {
     }
 
     return (
+
         <form onSubmit={submitHandler} >
             <div className="form-group">
                 <input type="text" className="form-control" 

@@ -13,7 +13,8 @@ const handlers = {
         notes: state.notes.filter(note => note.id !== payload)
     }),
     DEFAULT: state => state
-    }
+
+}
 
     export const databaseReducer = (state, action) => {
     const handle = handlers[action.type] || handlers.DEFAULT

@@ -1,8 +1,9 @@
-import React, {useReducer} from 'react'
+import React, {useReducer, useState} from 'react'
 import axios from 'axios'
 import {DatabaseContext} from './databaseContext'
 import {databaseReducer} from './databaseReduser'
-import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../alert/types'
+import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../alert/types';
+import { useAuth } from '../hook/useAuth';
 
 const url = "https://collection-2f228-default-rtdb.firebaseio.com"
 
@@ -12,6 +13,8 @@ export const DatabaseState = ({children}) => {
         loading: false
     }
     const [state, dispatch] = useReducer(databaseReducer, initialState)
+    const {id, photoURL} = useAuth();
+    //const [nameCollection, title, set] = useState('')
     
     const showLoader = () => dispatch({type: SHOW_LOADER})
     
@@ -29,16 +32,19 @@ export const DatabaseState = ({children}) => {
         dispatch({type: FETCH_NOTES, payload})
     }
     
-    const addNote = async title => {
+    const addNote = async (nameCollection, title, set) => {
         const note = {
-        title, date: new Date().toJSON()
+        uid: id,
+        nameCollection: nameCollection,
+        title: title,
+        set: set,
+        photoURL: photoURL,
+        date: new Date().toJSON()
         }
-    
         try {
-            const res = await axios.post(`${url}/notes.json`, note)
+        await axios.post(`${url}/notes.json`, note)
         const payload = {
             ...note,
-            id: res.data.name
         }
     
         dispatch({type: ADD_NOTE, payload})
@@ -47,16 +53,15 @@ export const DatabaseState = ({children}) => {
         throw new Error(e.message)
         }
     }
-
+    
     const removeNote = async id => {
         await axios.delete(`${url}/notes/${id}.json`)
     
         dispatch({
         type: REMOVE_NOTE,
-        //payload: id
+        payload: id
         })
     }
-
 
     return (
         <DatabaseContext.Provider value={{
