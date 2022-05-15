@@ -14,6 +14,15 @@ export const Home = () => {
         }, [])  
     return (
     
-    <div>User</div>
+        <Fragment>
+            <Form />
+            <hr/>
+            {loading
+        ? <Loader />
+        : <Notes notes={notes} onRemove={removeNote}/>
+        
+        }
+            <Notes notes={notes}/>
+        </Fragment>
     )
 }
