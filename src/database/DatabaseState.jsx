@@ -53,7 +53,7 @@ export const DatabaseState = ({children}) => {
     
         dispatch({
         type: REMOVE_NOTE,
-        //payload: id
+        payload: id
         })
     }
 

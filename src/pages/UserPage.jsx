@@ -8,10 +8,17 @@ import { useAuth } from '../hook/useAuth';
 
 export const UserPage = () => {
     const {id} = useAuth();
-    console.log(id)    
+    const {loading, notes, removeNote} = useContext(DatabaseContext)
+    
     return (
         <div>
             <h1>Your page! </h1>
+            <Form />
+            <hr/>
+            {loading
+        ? <Loader />
+        : <Notes notes={notes} onRemove={removeNote}/>
+        }
             
         </div>
         

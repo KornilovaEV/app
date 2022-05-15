@@ -13,6 +13,7 @@ export const Notes = ({notes, onRemove}) => {
         <li className="list-group-item note">
 
             <strong>{note.title}</strong>
+            console.log(note.title)
 
 
         <button
