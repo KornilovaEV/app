@@ -22,7 +22,7 @@ const Collection = () => {
             <h1>Our Collections</h1>
             <CollectionFilter postQuery={postQuery} latest={latest} setSearchParams={setSearchParams} />
             <Link to="/collections/new">Add new collection</Link>
-            {
+            {/*
                 collections.filter(
                     collection => collection.title.includes(postQuery) && collection.id >= startsFrom
                 )
@@ -32,7 +32,7 @@ const Collection = () => {
                     </Link>
                 ))
                 
-                }
+                */}
         </div>
     )
 }
