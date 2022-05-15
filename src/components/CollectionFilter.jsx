@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Checkbox } from '@mui/material';
+import { pink } from '@mui/material/colors';
 
 const CollectionFilter = ({postQuery, latest, setSearchParams}) => {
     const [search, setSearch] = useState(postQuery);
@@ -23,7 +25,17 @@ const CollectionFilter = ({postQuery, latest, setSearchParams}) => {
         <form autoComplete="off" onSubmit={handleSubmit}>
             <input type="search" name="search" value={search} onChange={e => setSearch(e.target.value)} />
             <label style={{ padding: '0 1rem' }}>
-                <input type="checkbox" name="latest" checked={checked} onChange={e => setChecked(e.target.checked)}/> New only
+            <Checkbox
+            onChange={e => setChecked(e.target.checked)}
+            name="latest" 
+            checked={checked}
+            style={{
+                color: pink[200],
+                '&.MuiChecked': {
+                color: pink[200],
+                },
+            }}
+            />New only
             </label>
             <input type="submit" value="Search" />
         </form>

@@ -16,12 +16,12 @@ import {RequireAuth} from './hoc/RequireAuth';
 import {AuthProvider} from './hoc/AuthProvider';
 
 import {DatabaseState} from './database/DatabaseState';
+//import {DBstate} from './database/DBstate';
 
 import {Routes, Route,/* Navigate*/} from 'react-router-dom';
-
 function App(){
     return (
-        <DatabaseState>
+            <DatabaseState>
             <AuthProvider>
                 <AlertState>
                     <Alert />
@@ -50,9 +50,11 @@ function App(){
                                 <Route path="*" element={<Notfoundpage />} />
                             </Route>
                         </Routes>
+                        
                 </AlertState>
             </AuthProvider>
-        </DatabaseState>
+            </DatabaseState>
+        
     );
 }
 

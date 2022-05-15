@@ -29,9 +29,11 @@ export const DatabaseState = ({children}) => {
         dispatch({type: FETCH_NOTES, payload})
     }
     
-    const addNote = async title => {
+    const addNote = async (title,name) => {
         const note = {
-        title, date: new Date().toJSON()
+        name,
+        title, 
+        date: new Date().toJSON()
         }
     
         try {

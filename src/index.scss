@@ -57,7 +57,7 @@ input[type='submit'],
 }
 
 button[type='button'] {
-  background: #516391;
+  background: #575758;
   color: white;
   text-transform: none;
   padding: 10px;
@@ -67,13 +67,14 @@ button[type='button'] {
 }
 
 .note{
-  background: #516391;
-  color: white;
+  background: #d291be;
   align-items: center;
-  top: 50%;
-  left: 90%;
+  display: flex;
+  justify-content: space-between;
+  word-wrap: break-word;
   strong {
     margin-right: 1rem;
+    width: 85%;
   }
 }
 

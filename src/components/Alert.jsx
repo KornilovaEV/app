@@ -23,7 +23,14 @@ export const Alert = () => {
         <div className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
             <strong>Attention </strong>
             &nbsp;{alert.text}
-            <button onClick={hide} type="button" className="close note" aria-label="Close">
+            <button onClick={hide} 
+            type="button" 
+            className="close" 
+            aria-label="Close"
+            style={{
+                left: '85%'
+            }}
+            >
             <span aria-hidden="true">&times;</span>
             </button>
         </div>

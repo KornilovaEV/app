@@ -5,10 +5,10 @@ import { DatabaseContext } from '../database/databaseContext'
 import { Loader } from '../components/Loader'
 import { useAuth } from '../hook/useAuth';
 
-
 export const UserPage = () => {
     const {id} = useAuth();
     const {loading, notes, removeNote} = useContext(DatabaseContext)
+    
     
     return (
         <div>
@@ -19,7 +19,8 @@ export const UserPage = () => {
         ? <Loader />
         : <Notes notes={notes} onRemove={removeNote}/>
         }
-            
+    
+    
         </div>
         
 

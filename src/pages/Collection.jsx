@@ -1,9 +1,15 @@
-import {Link} from "react-router-dom"
+import {Link, useSearchParams} from "react-router-dom"
 import { useState, useEffect } from 'react'
+import { CollectionFilter } from '../components/CollectionFilter';
 
 
 const Collection = () => {
     const [collections, setCollections] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const postQuery = searchParams.get('post') || '';
+    const latest = searchParams.has('latest');
+    const startsFrom = latest ? 80 : 1;
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/posts`)
@@ -14,9 +20,13 @@ const Collection = () => {
     return (
         <div>
             <h1>Our Collections</h1>
+            <CollectionFilter postQuery={postQuery} latest={latest} setSearchParams={setSearchParams} />
             <Link to="/collections/new">Add new collection</Link>
             {
-                collections.map(collection => (
+                collections.filter(
+                    collection => collection.title.includes(postQuery) && collection.id >= startsFrom
+                )
+                .map(collection => (
                     <Link key={collection.id} to={`/collections/${collection.id}`}>
                         <li>{collection.title}</li>
                     </Link>

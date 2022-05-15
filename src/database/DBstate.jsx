@@ -7,15 +7,18 @@ import { useAuth } from '../hook/useAuth';
 
 const url = "https://collection-2f228-default-rtdb.firebaseio.com"
 
-export const DatabaseState = ({children}) => {
+export const DBstate = ({children}) => {
     const initialState = {
         notes: [],
         loading: false
     }
     const [state, dispatch] = useReducer(databaseReducer, initialState)
-    const {id, photoURL} = useAuth();
+    //const {photoURL} = useAuth();
     //const [nameCollection, title, set] = useState('')
     
+    const {idU} = useAuth();
+
+
     const showLoader = () => dispatch({type: SHOW_LOADER})
     
     const fetchNotes = async () => {
@@ -34,11 +37,11 @@ export const DatabaseState = ({children}) => {
     
     const addNote = async (nameCollection, title, set) => {
         const note = {
-        uid: id,
+        uid: idU,
         nameCollection: nameCollection,
         title: title,
         set: set,
-        photoURL: photoURL,
+        //photoURL: photoURL,
         date: new Date().toJSON()
         }
         try {
@@ -48,7 +51,6 @@ export const DatabaseState = ({children}) => {
         }
     
         dispatch({type: ADD_NOTE, payload})
-    
         } catch (e) {
         throw new Error(e.message)
         }

@@ -12,7 +12,6 @@ export const Home = () => {
         fetchNotes()
         // eslint-disable-next-line
         }, [])  
-console.log({notes})
     return (
     
         <Fragment>
