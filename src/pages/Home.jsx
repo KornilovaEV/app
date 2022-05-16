@@ -20,9 +20,7 @@ export const Home = () => {
             {loading
         ? <Loader />
         : <Notes notes={notes} onRemove={removeNote}/>
-        
         }
-            <Notes notes={notes}/>
         </Fragment>
     )
 }

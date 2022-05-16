@@ -19,13 +19,20 @@ import {DatabaseState} from './database/DatabaseState';
 //import {DBstate} from './database/DBstate';
 
 import {Routes, Route,/* Navigate*/} from 'react-router-dom';
+import { Icon } from "./style/Icon";
+
 function App(){
     return (
-            <DatabaseState>
+        
+        <DatabaseState>
+        
+        <Icon />
+
             <AuthProvider>
                 <AlertState>
                     <Alert />
                         <Routes>
+                        
                             <Route path ="/" element={<Layout />} >
                                 <Route index element={<Home />}/>
                                     <Route path="login" element={<Login />}/>
@@ -33,7 +40,8 @@ function App(){
                                     <RequireAuth>
                                         <UserPage />
                                     </RequireAuth>
-                                    }/>
+                                    }/>                            
+                                    {/*<button onClick={themeToggler}>Switch Theme</button>*/}
                                     <Route path="registration" element={<Registration />}/>
                                     <Route path="collections" element={<Collection />}/>
                                     <Route path="collections/:id" element={<Singlepage />}/>
@@ -49,12 +57,11 @@ function App(){
                                     }/>
                                 <Route path="*" element={<Notfoundpage />} />
                             </Route>
-                        </Routes>
-                        
+                    </Routes>
                 </AlertState>
             </AuthProvider>
-            </DatabaseState>
-        
+        </DatabaseState>
+
     );
 }
 

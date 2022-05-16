@@ -22,7 +22,7 @@ function Loginer() {
                 }));
                 navigate('/user', {replace: true})
 
-            })
+            })  
     }
     return (
         <Forms

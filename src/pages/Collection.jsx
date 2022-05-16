@@ -19,7 +19,7 @@ const Collection = () => {
 
     return (
         <div>
-            <h1>Our Collections</h1>
+            <h1> Collections</h1>
             <CollectionFilter postQuery={postQuery} latest={latest} setSearchParams={setSearchParams} />
             <Link to="/collections/new">Add new collection</Link>
             {

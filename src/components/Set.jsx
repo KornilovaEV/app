@@ -35,10 +35,10 @@ export function Set() {
         <Box 
         component="form"
         style={{
-            height: "6.5ch",
+            height: "3.7ch",
             background: grey[50], 
-            width: "20ch",
-            "& .MuiTextFieldRoot": { m: 1, width: "25ch"}
+            width: "6.5ch",
+            "& .MuiTextFieldRoot": { m: 1}
         }}
         noValidate
         autoComplete="off"
@@ -49,7 +49,6 @@ export function Set() {
             select
             value={currency}
             onChange={handleChange}
-            helperText="Please select your currency"
             >
             {col.map((option) => (
                 <MenuItem key={option.value} value={option.value}>

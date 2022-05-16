@@ -11,7 +11,7 @@ const Layout = () => {
     const {isAuth} = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+
     return (
         <>
         <DatabaseState>
@@ -19,6 +19,7 @@ const Layout = () => {
             <NavLink to="/">Home Page</NavLink>
             <NavLink to="/collections">Collection Page</NavLink>
             <NavLink to="/user">Your Page</NavLink>
+            
             
             {isAuth?
             <input 

@@ -1,8 +1,10 @@
 import React from 'react';
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const Notes = ({notes, onRemove}) => (
-    
         <TransitionGroup component="ul" className="list-group">
             {notes.map(note => (
                 
@@ -11,15 +13,25 @@ export const Notes = ({notes, onRemove}) => (
                 classNames={'note'}
                 timeout={800}
                 >
+
                 <li className="list-group-item note">
                     
                 <strong>{note.title}</strong>
-                <button type="button" 
-                className="btn btn-outline-danger btn-sm"
-                onClick={() => onRemove(note.id)}
+
+                <Stack direction="row" alignItems="center" spacing={1}>
+                <IconButton 
+                aria-label="delete" 
+                size="large"
+                style={{
+                    background: 'none'
+                }}
                 >
-                    &times;
-                </button>
+                    <DeleteIcon 
+                    fontSize="inherit"
+                    onClick={() => onRemove(note.id)} />
+                </IconButton>
+                </Stack>
+
             </li>
             </CSSTransition>
             ))}

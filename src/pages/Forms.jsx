@@ -6,7 +6,6 @@ import {useForm} from 'react-hook-form'
 function Forms({title, handleClick}) {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
-
     const {
         register,
         formState: {errors, }} = useForm({
@@ -23,10 +22,8 @@ function Forms({title, handleClick}) {
                 message: "Max of 20 characters!"
             }
     }
-
     return (
         <div>
-
         <input
                 type="email"
                 value={email}
@@ -57,8 +54,6 @@ function Forms({title, handleClick}) {
         </div>
 
         <input onClick={() => handleClick(email, password)} type="submit" value= {title} />
-        
-
         </div>
     );
 }

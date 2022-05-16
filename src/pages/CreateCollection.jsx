@@ -6,20 +6,15 @@ import React, {useState, useContext} from 'react'
 import {DatabaseContext} from '../database/databaseContext'
 import {Set} from "../components/Set";
 
-
-
 const CreateCollection = ({name, title, handleClick}) => {
-
     const [nameCollection, setNameCollection] = useState(''); 
     const [titles, setTitles] = useState('');
     const isAuth = useAuth();
     const alert = useContext(AlertContext)
     const database = useContext(DatabaseContext)
 
-
     const submitHandler = event => {
         event.preventDefault()
-
     if (nameCollection.trim() && titles.trim()) {
         database.addNote(nameCollection.trim()&& titles.trim()).then(() => {
             alert.show('Create new coolection', 'success')
@@ -34,8 +29,8 @@ const CreateCollection = ({name, title, handleClick}) => {
     }
 
     return isAuth ? (
-        <form onSubmit={submitHandler}>
-    
+        <h3 onSubmit={submitHandler}>
+
         <div>
         <input
         type="nameCollection"
@@ -57,7 +52,7 @@ const CreateCollection = ({name, title, handleClick}) => {
         value = {"Create"} />
     
         </div>
-        </form>
+        </h3>
     ) : (
         <Navigate to="/login"/>
     )
